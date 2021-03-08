@@ -12,5 +12,4 @@ Examples for background processing in web apps.
 
 ## todo
 
-1. add a progress message every scan line
-1. add cancellation
+1. add cancellation - worker.terminate()
