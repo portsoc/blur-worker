@@ -1,8 +1,15 @@
 import { blurImageData } from './blur.js';
 
 addEventListener('message', (e) => {
-  console.log('working');
-  const result = blurImageData(...e.data);
-  postMessage(result);
-  console.log('done');
+  const message = e.data;
+
+  console.log('working on job', message.id);
+  const result = blurImageData(message.imageData, message.n);
+  console.log('work done on job', message.id);
+
+  const responseMessage = {
+    result,
+    id: message.id,
+  };
+  postMessage(responseMessage);
 });
