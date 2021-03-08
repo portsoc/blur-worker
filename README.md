@@ -8,6 +8,9 @@ Examples for background processing in web apps.
   - we pass all parameters to the worker
   - the worker sends the result when done
   - what happens to new blur messages sent while the worker is working?
+* `3-blur-progress` – add progress bar
+  - the worker reports the fraction done with every scan line
+  - which means we need to have _message types_ and callbacks
 
 
 ## todo

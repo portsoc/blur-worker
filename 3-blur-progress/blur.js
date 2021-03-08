@@ -35,7 +35,7 @@ export function blurImageData(imageData, n = 3, reportProgress) {
       convolve(x, y, 2); // blue
       // not blurring transparency
     }
-    reportProgress(Math.round(y / height * 100));
+    reportProgress(y / height);
   }
 
   return new ImageData(outputData, width, height);

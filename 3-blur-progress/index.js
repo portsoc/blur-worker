@@ -16,9 +16,10 @@ function hideCanvas(val = true) {
   el.imgContainer.classList.toggle('hideCanvas', val);
 }
 
-function reportProgress(percent) {
+function reportProgress(fraction) {
+  const percent = fraction * 100;
   el.progress.value = percent;
-  el.progress.textContent = `${percent}%`;
+  el.progress.textContent = `${Math.round(percent)}%`;
 }
 
 
