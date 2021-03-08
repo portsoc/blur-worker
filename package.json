@@ -1,0 +1,26 @@
+{
+  "name": "web-workers",
+  "version": "0.0.1",
+  "description": "examples for background processing in web apps",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/portsoc/web-workers.git"
+  },
+  "scripts": {
+    "start": "http-server ."
+  },
+  "keywords": [
+    "browser",
+    "web workers"
+  ],
+  "author": "Jacek Kopecky <jacek.kopecky@port.ac.uk>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/portsoc/web-workers/issues"
+  },
+  "homepage": "https://github.com/portsoc/web-workers#readme",
+  "devDependencies": {
+    "http-server": "^0.12.3"
+  }
+}
