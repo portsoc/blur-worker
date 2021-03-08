@@ -1,6 +1,7 @@
 export function blurImageData(imageData, n = 3) {
-  const outputData = Uint8ClampedArray.from(imageData.data);
   const data = new RGBADataWrapper(imageData);
+
+  const outputData = Uint8ClampedArray.from(imageData.data);
   const output = new RGBADataWrapper({
     data: outputData,
     width: data.width,
