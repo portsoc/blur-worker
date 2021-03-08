@@ -11,8 +11,6 @@ Examples for background processing in web apps.
 * `3-blur-progress` – add progress bar
   - the worker reports the fraction done with every scan line
   - which means we need to have _message types_ and callbacks
-
-
-## todo
-
-1. add cancellation - worker.terminate()
+* `4-blur-cancel` – make it possible to cancel running blurs
+  - we need to clean up all pending jobs, too
+  - could we also prevent starting new ones while a blur is already running? (hint: use `el.blur.disabled`)
