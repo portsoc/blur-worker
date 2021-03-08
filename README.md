@@ -4,7 +4,10 @@ Examples for background processing in web apps.
 
 In four stages, we show how to do background processing in Web applications, how to monitor progress and how to cancel the background jobs.
 
-## `1-blur` – blurring in the main thread ([see diff](https://github.com/portsoc/web-workers/compare/stage-1-blur..stage-2-blur-worker))
+## `1-blur` – blurring in the main thread
+- simple box blurring implemented in JavaScript and Canvas
+  - it is not the fastest: for better performance, use WebGL or WebAssembly
+  - but it illustrates dealing with long-running jobs
 
 ## `2-blur-worker` – delegate blurring to a background worker ([see diff](https://github.com/portsoc/web-workers/compare/stage-1-blur..stage-2-blur-worker))
 - we use one worker
