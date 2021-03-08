@@ -28,14 +28,14 @@ export function blurImageData(imageData, n = 3, reportProgress) {
   };
 
   const { width, height } = imageData;
-  for (let x = 0; x < width; x += 1) {
-    for (let y = 0; y < height; y += 1) {
+  for (let y = 0; y < height; y += 1) {
+    for (let x = 0; x < width; x += 1) {
       convolve(x, y, 0); // red channel
       convolve(x, y, 1); // green
       convolve(x, y, 2); // blue
       // not blurring transparency
     }
-    reportProgress(Math.round(x / width * 100));
+    reportProgress(Math.round(y / height * 100));
   }
 
   return new ImageData(outputData, width, height);
