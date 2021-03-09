@@ -16,10 +16,16 @@ function hideCanvas(val = true) {
   el.imgContainer.classList.toggle('hideCanvas', val);
 }
 
+function reportProgress(fraction) {
+  const percent = fraction * 100;
+  el.progress.value = percent;
+  el.progress.textContent = `${Math.round(percent)}%`;
+}
+
 
 async function doBlur() {
   const data = c.getImageData(0, 0, c.canvas.width, c.canvas.height);
-  const result = await blurImageData(data, el.n.valueAsNumber);
+  const result = await blurImageData(data, el.n.valueAsNumber, reportProgress);
   c.putImageData(result, 0, 0);
 }
 

@@ -1,4 +1,4 @@
-export function blurImageData(imageData, n = 3) {
+export function blurImageData(imageData, n = 3, reportProgress) {
   const data = new RGBADataWrapper(imageData);
 
   const outputData = Uint8ClampedArray.from(imageData.data);
@@ -35,7 +35,9 @@ export function blurImageData(imageData, n = 3) {
       convolve(x, y, 2); // blue
       // not blurring transparency
     }
+    reportProgress(y / height);
   }
+  reportProgress(1);
 
   return new ImageData(outputData, width, height);
 }
