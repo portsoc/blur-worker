@@ -1,4 +1,4 @@
-# Web Workers examples
+# Web Workers example: Blurring an Image
 
 Examples for background processing in web apps.
 
