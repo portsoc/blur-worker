@@ -37,6 +37,7 @@ export function blurImageData(imageData, n = 3, reportProgress) {
     }
     reportProgress(y / height);
   }
+  reportProgress(1);
 
   return new ImageData(outputData, width, height);
 }
