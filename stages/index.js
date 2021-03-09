@@ -1,4 +1,4 @@
-import { blurImageData } from './blur.js';
+import { blurImageData } from './blur-in-worker.js';
 
 const el = {};
 let c;
@@ -17,9 +17,9 @@ function hideCanvas(val = true) {
 }
 
 
-function doBlur() {
+async function doBlur() {
   const data = c.getImageData(0, 0, c.canvas.width, c.canvas.height);
-  const result = blurImageData(data, el.n.valueAsNumber);
+  const result = await blurImageData(data, el.n.valueAsNumber);
   c.putImageData(result, 0, 0);
 }
 
