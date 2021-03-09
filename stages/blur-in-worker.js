@@ -1,6 +1,11 @@
-const worker = new Worker('worker.js', { type: 'module' });
+let worker;
 
-worker.addEventListener('message', handleMessage);
+createWorker();
+
+function createWorker() {
+  worker = new Worker('worker.js', { type: 'module' });
+  worker.addEventListener('message', handleMessage);
+}
 
 const responseReceivers = new Map();
 let nextMessageId = 0;
@@ -29,7 +34,23 @@ export function blurImageData(imageData, n = 3, reportProgress) {
   console.log('submitting job', message.id);
   worker.postMessage(message);
 
-  return new Promise((resolve) => {
-    responseReceivers.set(message.id, { receiver: resolve, reportProgress });
+  return new Promise((resolve, reject) => {
+    responseReceivers.set(message.id, { receiver: resolve, reject, reportProgress });
   });
+}
+
+export function cancelBlur() {
+  // stop ongoing work
+  worker.terminate();
+
+  // notify all callers that their jobs are cancelled
+  const cancelled = new Error('blur cancelled');
+  for (const [id, responseReceiver] of responseReceivers.entries()) {
+    responseReceiver.reject(cancelled);
+    console.log('cancelled job', id);
+  }
+  responseReceivers.clear();
+
+  // create a new worker ready for jobs
+  createWorker();
 }

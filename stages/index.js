@@ -1,4 +1,4 @@
-import { blurImageData } from './blur-in-worker.js';
+import { blurImageData, cancelBlur } from './blur-in-worker.js';
 
 const el = {};
 let c;
@@ -24,9 +24,13 @@ function reportProgress(fraction) {
 
 
 async function doBlur() {
-  const data = c.getImageData(0, 0, c.canvas.width, c.canvas.height);
-  const result = await blurImageData(data, el.n.valueAsNumber, reportProgress);
-  c.putImageData(result, 0, 0);
+  try {
+    const data = c.getImageData(0, 0, c.canvas.width, c.canvas.height);
+    const result = await blurImageData(data, el.n.valueAsNumber, reportProgress);
+    c.putImageData(result, 0, 0);
+  } catch (e) {
+    reportProgress(0);
+  }
 }
 
 
@@ -40,6 +44,7 @@ function init() {
   el.reset.addEventListener('click', drawOriginalImageOnCanvas);
   el.n.addEventListener('input', reportN);
   el.blur.addEventListener('click', doBlur);
+  el.cancel.addEventListener('click', cancelBlur);
   el.canvas.addEventListener('mousedown', () => hideCanvas(true));
   el.canvas.addEventListener('mouseup', () => hideCanvas(false));
   el.canvas.addEventListener('mouseleave', () => hideCanvas(false));
